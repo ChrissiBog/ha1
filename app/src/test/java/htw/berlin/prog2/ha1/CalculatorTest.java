@@ -90,20 +90,53 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-    
+
     @Test
-@DisplayName("should correctly calculate percent")
-void testPercentOperation() {
-    Calculator calc = new Calculator();
+    @DisplayName("should correctly calculate percent")
+    void testPercentOperation() {
+        Calculator calc = new Calculator();
 
-    calc.pressDigitKey(5);
-    calc.pressDigitKey(0);
-    calc.pressUnaryOperationKey("%");
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
 
-    String expected = "0.5";
-    String actual = calc.readScreen();
+        String expected = "0.5";
+        String actual = calc.readScreen();
 
-    assertEquals(expected, actual);
-}
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should not reset memory on first clear press")
+    void testClearKeyOnce() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressClearKey(); // nur Bildschirm löschen
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "6"; // 4 + 2
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display error when inverting zero")
+    void testInversionOfZero() {
+        Calculator calc = new Calculator();
+    
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+    
+        String expected = "Error";
+        String actual = calc.readScreen();
+    
+        assertEquals(expected, actual);
+    }
+
 }
 
