@@ -90,6 +90,7 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    
     @Test
 @DisplayName("should correctly calculate percent")
 void testPercentOperation() {
