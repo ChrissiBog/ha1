@@ -14,6 +14,9 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    //Ergänzung für Bugfix
+    private boolean clearPressedOnce = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -44,10 +47,24 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
-    public void pressClearKey() {
+
+    // Originalcode
+    /*public void pressClearKey() {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+    }*/
+
+    public void pressClearKey() {
+        if (!clearPressedOnce) {
+            screen = "0";
+            clearPressedOnce = true;
+        } else {
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+            clearPressedOnce = false;
+        }
     }
 
     /**
