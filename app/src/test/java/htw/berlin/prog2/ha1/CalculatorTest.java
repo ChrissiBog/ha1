@@ -89,7 +89,7 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //TODO hier weitere Tests erstellen - green test
 
     @Test
     @DisplayName("should correctly calculate percent")
@@ -105,6 +105,8 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    //TODO hier weitere Tests erstellen - two red tests
 
     @Test
     @DisplayName("should not reset memory on first clear press")
